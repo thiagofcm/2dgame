@@ -44,6 +44,8 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetButtonDown("Jump")){
 			Jump();
 		}
+
+		ShowFalling();
 	}
 
 	void MoveHorizontal(float speed) {
@@ -63,9 +65,16 @@ public class PlayerController : MonoBehaviour {
 
 	void StopMovingHorizontal() {
 		rb.velocity = new Vector2(0f, rb.velocity.y);	
-
+		if (!isJumping){
 		anim.SetInteger("State", 0);
 	}
+	}
+
+	void ShowFalling() {
+		if (rb.velocity.y < 0f) {
+			anim.SetInteger("State", 3);
+		}
+	} 
 	
 	void Jump() {
 		isJumping = true;
