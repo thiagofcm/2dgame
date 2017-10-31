@@ -19,15 +19,20 @@ namespace UnityStandardAssets._2D
         // Use this for initialization
         private void Start()
         {
-            m_LastTargetPosition = target.position;
-            m_OffsetZ = (transform.position - target.position).z;
+            if (target != null) {
+                updateVariables();
+            }
             transform.parent = null;
         }
-
+            void updateVariables(){
+                m_LastTargetPosition = target.position;
+                m_OffsetZ = (transform.position - target.position).z;
+            }
 
         // Update is called once per frame
         private void Update()
         {
+            if (target != null) {
             // only update lookahead pos if accelerating or changed direction
             float xMoveDelta = (target.position - m_LastTargetPosition).x;
 
@@ -48,6 +53,14 @@ namespace UnityStandardAssets._2D
             transform.position = newPos;
 
             m_LastTargetPosition = target.position;
+            }
+            else {
+                GameObject obj = GameObject.FindGameObjectWithTag("Player");
+                if (obj != null) {
+                    target = obj.transform;
+                    updateVariables();
+                }
+            }
         }
     }
 }
