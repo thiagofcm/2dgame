@@ -113,11 +113,16 @@ public class PlayerController : MonoBehaviour {
 	void EnableDoubleJump() {
 		canDoubleJump = true; 
 	}
-	void OnCollisionEnter2D(Collision2D other){
-		if (other.gameObject.layer == LayerMask.NameToLayer("Ground")){
-			isJumping = false;
+    void OnCollisionEnter2D(Collision2D other) {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Ground")) {
+            isJumping = false;
 
-		}
-	}
+        }
+    }
 
-}
+        void OnTriggerEnter2D(Collider2D other) {
+            if (other.gameObject.CompareTag("Coin")) {
+                Destroy(other.gameObject);
+            }
+        }
+    }   
