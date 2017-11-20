@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour {
 	
 	void Jump() {
 		if (isGrounded) {
-		isJumping = true;
+		isJumping = true;                         
 		rb.AddForce(new Vector2(0f, jumpSpeed));
 		anim.SetInteger("State", 1);	
 		Invoke ("EnableDoubleJump", delayForDoubleJump);
