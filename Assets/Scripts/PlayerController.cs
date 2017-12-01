@@ -125,7 +125,8 @@ public class PlayerController : MonoBehaviour {
         void OnTriggerEnter2D(Collider2D other) {
             if (other.gameObject.CompareTag("Coin")) {
 				AudioManager.instance.PlayCoinPickupSound(other.gameObject);
-            SFXManager.instance.ShowCoinParticles(other.gameObject);
+            	SFXManager.instance.ShowCoinParticles(other.gameObject);
+				GM.instance.IncrementCoinCount();
                 Destroy(other.gameObject);
             }
         }
